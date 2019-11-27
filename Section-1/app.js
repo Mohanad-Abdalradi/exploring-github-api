@@ -17,7 +17,7 @@ async function gitRepos() {
         anchor.textContent = i.full_name;
         divResult.appendChild(anchor)
         divResult.appendChild(document.createElement('br'))
-  })
+  });
 }
 
 function clear() {
