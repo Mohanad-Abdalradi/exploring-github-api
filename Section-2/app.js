@@ -26,7 +26,7 @@ async function gitRepos() {
 async function gitIssues() {
     clear();
 
-    const url = "https://api.github.com/search/issues?q=author:raisedadead repo:freecodecamp/freecodecamp type:issues type:issue"
+    const url = "https://api.github.com/search/issues?q=author:raisedadead repo:freecodecamp/freecodecamp type:issue"
     const response = await fetch(url)
     const result = await response.json()
 
