@@ -2,10 +2,10 @@ const btuRepos = document.getElementById("btuRepos");
 const btuIssues = document.getElementById("btuIssues");
 
 const divResult = document.getElementById("divResult");
-btuRepos.addEventListener("click", gitRepos);
-btuIssues.addEventListener("click", gitIssues);
+btuRepos.addEventListener("click", getRepos);
+btuIssues.addEventListener("click", getIssues);
 
-async function gitRepos() {
+async function getRepos() {
   clear();
 
   const url =
@@ -22,7 +22,7 @@ async function gitRepos() {
   });
 }
 
-async function gitIssues() {
+async function getIssues() {
   clear();
 
   const url =
