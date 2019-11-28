@@ -4,12 +4,12 @@ const btuIssuesPrivate = document.getElementById("btuIssuesPrivate");
 const btuCommits = document.getElementById("btuCommits");
 
 const divResult = document.getElementById("divResult");
-btuRepos.addEventListener("click", gitRepos);
-btuIssues.addEventListener("click", gitIssues);
-btuCommits.addEventListener("click", e=> gitCommits());
-btuIssuesPrivate.addEventListener("click", e=> gitIssuesPrivate());
+btuRepos.addEventListener("click", getRepos);
+btuIssues.addEventListener("click", getIssues);
+btuCommits.addEventListener("click", e => getCommits());
+btuIssuesPrivate.addEventListener("click", e => getIssuesPrivate());
 
-async function gitRepos() {
+async function getRepos() {
   clear();
 
   const url =
@@ -26,7 +26,7 @@ async function gitRepos() {
   });
 }
 
-async function gitIssues() {
+async function getIssues() {
   clear();
 
   const url =
@@ -43,32 +43,32 @@ async function gitIssues() {
   });
 }
 
-async function gitIssuesPrivate() {
-    clear();
-    const headers = {
-        "Authorization" : `Token debd17fe93f71a8f91f6ba03d79b96a27fc1face`
-    }
-    const url =
-      "https://api.github.com/search/issues?q=repo:Mohanad-Abdalradi/exploring-github-api-private type:issue";
-    const response = await fetch(url, {
-        "method": "GET",
-        "headers": headers
-    });
-    
-    const result = await response.json();
-  
-    result.items.forEach(i => {
-      const anchor = document.createElement("a");
-      anchor.href = i.html_url;
-      anchor.textContent = i.title;
-      divResult.appendChild(anchor);
-      divResult.appendChild(document.createElement("br"));
-    });
-  }
+async function getIssuesPrivate() {
+  clear();
+  const headers = {
+    Authorization: `Token debd17fe93f71a8f91f6ba03d79b96a27fc1face`
+  };
+  const url =
+    "https://api.github.com/search/issues?q=repo:Mohanad-Abdalradi/exploring-github-api-private type:issue";
+  const response = await fetch(url, {
+    method: "GET",
+    headers: headers
+  });
 
-async function gitCommits(
+  const result = await response.json();
+
+  result.items.forEach(i => {
+    const anchor = document.createElement("a");
+    anchor.href = i.html_url;
+    anchor.textContent = i.title;
+    divResult.appendChild(anchor);
+    divResult.appendChild(document.createElement("br"));
+  });
+}
+
+async function getCommits(
   url = "https://api.github.com/search/commits?q=repo:freecodecamp/freecodecamp author-date:2019-03-01..2019-03-31"
-  ) {
+) {
   clear();
 
   const headers = {
@@ -108,10 +108,10 @@ async function gitCommits(
     divResult.appendChild(document.createElement("br"));
   });
 
-  urls.forEach(u=> {
+  urls.forEach(u => {
     const btu = document.createElement("button");
     btu.textContent = u.title;
-    btu.addEventListener("click", e=> getCommits(u.url));
+    btu.addEventListener("click", e => getCommits(u.url));
     divResult.appendChild(btu);
   });
 }
