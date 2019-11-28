@@ -85,14 +85,13 @@ async function getIssuesPrivate() {
   });
 
   const result = await response.json();
-
   result.items.forEach(i => {
     const anchor = document.createElement("a");
     anchor.href = i.html_url;
     anchor.textContent = i.title;
     divResult.appendChild(anchor);
     divResult.appendChild(document.createElement("br"));
-  });
+  })
 }
 
 async function getCommits(
