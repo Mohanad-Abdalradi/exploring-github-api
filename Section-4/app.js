@@ -3,11 +3,11 @@ const btuIssues = document.getElementById("btuIssues");
 const btuCommits = document.getElementById("btuCommits");
 
 const divResult = document.getElementById("divResult");
-btuRepos.addEventListener("click", gitRepos);
-btuIssues.addEventListener("click", gitIssues);
-btuCommits.addEventListener("click", e=> gitCommits());
+btuRepos.addEventListener("click", getRepos);
+btuIssues.addEventListener("click", getIssues);
+btuCommits.addEventListener("click", e => getCommits());
 
-async function gitRepos() {
+async function getRepos() {
   clear();
 
   const url =
@@ -24,7 +24,7 @@ async function gitRepos() {
   });
 }
 
-async function gitIssues() {
+async function getIssues() {
   clear();
 
   const url =
@@ -41,9 +41,9 @@ async function gitIssues() {
   });
 }
 
-async function gitCommits(
+async function getCommits(
   url = "https://api.github.com/search/commits?q=repo:freecodecamp/freecodecamp author-date:2019-03-01..2019-03-31"
-  ) {
+) {
   clear();
 
   const headers = {
@@ -83,10 +83,10 @@ async function gitCommits(
     divResult.appendChild(document.createElement("br"));
   });
 
-  urls.forEach(u=> {
+  urls.forEach(u => {
     const btu = document.createElement("button");
     btu.textContent = u.title;
-    btu.addEventListener("click", e=> getCommits(u.url));
+    btu.addEventListener("click", e => getCommits(u.url));
     divResult.appendChild(btu);
   });
 }
